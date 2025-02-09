@@ -1,7 +1,9 @@
 from selenium import webdriver
-
+import time
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+from selenium.webdriver.support.wait import WebDriverWait
 
 options = webdriver.ChromeOptions()
 options.page_load_strategy = 'normal'
@@ -17,3 +19,12 @@ driver.find_element(By.ID,"username").send_keys("rahulshettyacademy")
 driver.find_element(By.ID, "password").send_keys("learning")
 driver.find_element(By.CSS_SELECTOR,"span.text-white.termsText").click()
 driver.find_element(By.ID, "signInBtn").click()
+wait = WebDriverWait(driver,3)
+try:
+    wait.until(EC.title_is("ProtoCommerce"))
+    print("Login successful!")
+except:
+    print("Login failed! Capturing screenshot...")
+    driver.save_screenshot("login_error.png")
+    error_message = driver.find_element(By.CSS_SELECTOR, ".alert-danger").text
+    print("Error Message:", error_message)
