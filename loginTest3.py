@@ -36,5 +36,5 @@ except:
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".alert-danger")))
     error_message = driver.find_element(By.CSS_SELECTOR, ".alert-danger").text
     print("Error Message:", error_message)
-
-driver.quit()
+finally:
+    driver.quit()
