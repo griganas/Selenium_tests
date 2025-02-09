@@ -21,7 +21,7 @@ driver.find_element(By.CSS_SELECTOR,"span.text-white.termsText").click()
 driver.find_element(By.ID, "signInBtn").click()
 
 
-wait = WebDriverWait(driver,2)
+wait = WebDriverWait(driver,10)
 
 try:
     wait.until(EC.title_is("ProtoCommerce"))

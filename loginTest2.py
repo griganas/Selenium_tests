@@ -19,7 +19,7 @@ driver.find_element(By.ID,"username").send_keys("rahulshettyacademy")
 driver.find_element(By.ID, "password").send_keys("learning")
 driver.find_element(By.CSS_SELECTOR,"span.text-white.termsText").click()
 driver.find_element(By.ID, "signInBtn").click()
-wait = WebDriverWait(driver,3)
+wait = WebDriverWait(driver,10)
 try:
     wait.until(EC.title_is("ProtoCommerce"))
     print("Login successful!")
