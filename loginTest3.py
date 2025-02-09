@@ -15,19 +15,26 @@ URL = "https://rahulshettyacademy.com/loginpagePractise/"
 driver.get(URL)
 driver.maximize_window()
 
-driver.find_element(By.ID,"username").send_keys("rahulshetty")
-driver.find_element(By.ID, "password").send_keys("learning")
+
+
+userName = "rahulshetty"
+passWord = "learning"
+driver.find_element(By.ID,"username").send_keys(userName)
+driver.find_element(By.ID, "password").send_keys(passWord)
 driver.find_element(By.CSS_SELECTOR,"span.text-white.termsText").click()
 driver.find_element(By.ID, "signInBtn").click()
 
 
-wait = WebDriverWait(driver,10)
 
+wait = WebDriverWait(driver,2)
 try:
     wait.until(EC.title_is("ProtoCommerce"))
     print("Login successful!")
 except:
     print("Login failed! Capturing screenshot...")
     driver.save_screenshot("login_error.png")
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".alert-danger")))
     error_message = driver.find_element(By.CSS_SELECTOR, ".alert-danger").text
     print("Error Message:", error_message)
+
+driver.quit()
